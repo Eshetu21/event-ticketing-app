@@ -1,4 +1,6 @@
+import 'package:crypto/features/auth/presentation/pages/login_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:crypto/themes/app_colors.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -11,6 +13,7 @@ class _SplashScreenState extends State<SplashScreen>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _textOpacityAnimation;
+  late Animation<double> _textScaleAnimation;
   late Animation<double> _containerScaleAnimation;
   late Animation<double> _stackPositionAnimation;
   late Animation<double> _containerOpacityAnimation;
@@ -26,6 +29,10 @@ class _SplashScreenState extends State<SplashScreen>
         CurvedAnimation(
             parent: _controller,
             curve: const Interval(0.0, 0.2, curve: Curves.easeIn)));
+    _textScaleAnimation = Tween<double>(begin: 0.5, end: 1.2).animate(
+        CurvedAnimation(
+            parent: _controller,
+            curve: const Interval(0.2, 0.4, curve: Curves.easeIn)));
 
     _containerScaleAnimation = Tween<double>(begin: 6, end: 2).animate(
         CurvedAnimation(
@@ -48,6 +55,10 @@ class _SplashScreenState extends State<SplashScreen>
             curve: const Interval(0.7, 0.9, curve: Curves.easeIn)));
 
     _controller.forward();
+    Future.delayed(Duration(seconds: 6), () {
+      Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (context) => LoginScreen()));
+    });
   }
 
   @override
@@ -59,61 +70,74 @@ class _SplashScreenState extends State<SplashScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-      body: Center(
-        child: AnimatedBuilder(
-          animation: _controller,
-          builder: (context, child) {
-            return Transform.translate(
-              offset: Offset(0, _stackPositionAnimation.value),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Stack(
-                    alignment: Alignment.center,
-                    children: [
-                      Opacity(
-                        opacity: _containerOpacityAnimation.value,
-                        child: Transform.scale(
-                          scale: _containerScaleAnimation.value,
-                          child: Container(
-                            width: 120,
-                            height: 120,
-                            decoration: const BoxDecoration(
-                                color: Colors.purple, shape: BoxShape.circle),
+      body: Container(
+        decoration: BoxDecoration(gradient: AppColors.scaffoldBackground),
+        child: Center(
+          child: AnimatedBuilder(
+            animation: _controller,
+            builder: (context, child) {
+              return Transform.translate(
+                offset: Offset(0, _stackPositionAnimation.value),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        Opacity(
+                          opacity: _containerOpacityAnimation.value,
+                          child: Transform.scale(
+                            scale: _containerScaleAnimation.value,
+                            child: Container(
+                              width: 120,
+                              height: 120,
+                              decoration: const BoxDecoration(
+                                  gradient: LinearGradient(
+                                      colors: [
+                                        Color(0xFF8D78FF),
+                                        Color(0xFF2B1A89),
+                                      ],
+                                      begin: Alignment.topCenter,
+                                      end: Alignment.bottomCenter),
+                                  shape: BoxShape.circle),
+                            ),
                           ),
                         ),
-                      ),
-                      Opacity(
-                        opacity: _textOpacityAnimation.value,
-                        child: const Text(
-                          "Agafari",
-                          style: TextStyle(
-                              fontSize: 28,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black),
+                        Opacity(
+                          opacity: _textOpacityAnimation.value,
+                          child: Transform.scale(
+                            scale: _textScaleAnimation.value,
+                            child: const Text(
+                              "AGAFARI",
+                              style: TextStyle(
+                                  fontSize: 28,
+                                  fontWeight: FontWeight.bold,
+                                  color: Color(0xFF59F7FF)),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 80),
+                    Opacity(
+                      opacity: _welcomeOpacityAnimation.value,
+                      child: const Text(
+                        "Welcome",
+                        style: TextStyle(
+                          fontSize: 28,
+                          fontWeight: FontWeight.bold,
+                          color: Color(0xFF0F063E),
                         ),
                       ),
-                    ],
-                  ),
-                  const SizedBox(height: 80),
-                  Opacity(
-                    opacity: _welcomeOpacityAnimation.value,
-                    child: const Text(
-                      "Welcome",
-                      style: TextStyle(
-                        fontSize: 28,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black,
-                      ),
                     ),
-                  ),
-                ],
-              ),
-            );
-          },
+                  ],
+                ),
+              );
+            },
+          ),
         ),
       ),
     );
   }
 }
+
