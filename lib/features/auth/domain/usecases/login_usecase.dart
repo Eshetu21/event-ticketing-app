@@ -5,6 +5,7 @@ class LoginUsecase {
   final AuthRepository authRepository;
 
   LoginUsecase({required this.authRepository});
+
   Future<UserEntity> call(String email, String password) {
     return authRepository.login(email, password);
   }

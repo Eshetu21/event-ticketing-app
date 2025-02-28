@@ -1,4 +1,4 @@
-abstract interface class UserEntity {
+abstract class UserEntity {
   final String name;
   final String email;
   final String password;
