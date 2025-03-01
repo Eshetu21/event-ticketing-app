@@ -16,7 +16,12 @@ class AuthInputField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextFormField(
       decoration: InputDecoration(prefixIcon: icon, hintText: hintText),
+      validator: (value) {
+        if (value!.isEmpty) {
+          return '$hintText is missing';
+        }
+        return null;
+      },
     );
   }
 }
-

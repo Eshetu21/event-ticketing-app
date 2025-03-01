@@ -11,6 +11,7 @@ class AppPallete {
   static const Color errorColor = Colors.redAccent;
   static const Color hintTextColor = Color(0xFF747688);
   static const Color textColor = Color(0xFF120D26);
-  static const Color scaffoldBackgroundColor = Color(0xFF171766);
+  static const Color primaryColor = Color(0xFF171766);
+  static const Color secondaryColor = Color(0xFFF2583E);
   static const Color transparentColor = Colors.transparent;
 }

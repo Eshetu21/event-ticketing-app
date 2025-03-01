@@ -1,4 +1,5 @@
-import 'package:crypto/features/auth/presentation/widgets/auth_input_field.dart';
+import 'package:crypto/features/auth/presentation/pages/sign_up_screen.dart';
+import 'package:crypto/features/auth/presentation/widgets/auth_common_widgets.dart';
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -12,11 +13,11 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(automaticallyImplyLeading: false),
       body: Container(
-        margin: EdgeInsets.symmetric(horizontal: 25),
+        margin: EdgeInsets.all(25),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -29,22 +30,26 @@ class _LoginScreenState extends State<LoginScreen> {
               ],
             ),
             SizedBox(height: 55),
-            Text("Sign in",
-                style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold)),
+            Align(
+              alignment: Alignment.topLeft,
+              child: Text("Sign in",
+                  style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold)),
+            ),
             SizedBox(height: 15),
-            AuthInputField(
-              hintText: "abc@email.com",
-              icon: Image.asset("assets/icons/mail.png"),
-            ),
+            AuthCommonWidgets.authInputField("Email", "assets/icons/mail.png"),
             SizedBox(height: 10),
-            AuthInputField(
-              hintText: "your password",
-              icon: Image.asset("assets/icons/password.png"),
-            ),
+            AuthCommonWidgets.authInputField(
+                "Password", "assets/icons/password.png"),
             SizedBox(height: 10),
             Align(
                 alignment: Alignment.bottomRight,
-                child: Text("Forgot password?"))
+                child: Text("Forgot password?")),
+            AuthCommonWidgets.authButton("SIGN IN"),
+            SizedBox(height: 10),
+            AuthCommonWidgets.orDividerWithGoogle("Sign in with google"),
+            SizedBox(height: 20),
+            AuthCommonWidgets.authFooterText(context, "Don't have an account? ",
+                "Sign up", SignupScreen(), false),
           ],
         ),
       ),
