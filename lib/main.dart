@@ -1,3 +1,4 @@
+import 'package:crypto/core/theme/theme.dart';
 import 'package:crypto/pages/splash_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -10,7 +11,9 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-        debugShowCheckedModeBanner: false, home: SplashScreen());
+    return MaterialApp(
+        theme: AppTheme.lightThemeMode,
+        debugShowCheckedModeBanner: false,
+        home: SplashScreen());
   }
 }

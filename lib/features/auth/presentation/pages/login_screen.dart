@@ -1,3 +1,4 @@
+import 'package:crypto/features/auth/presentation/widgets/auth_input_field.dart';
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -20,41 +21,33 @@ class _LoginScreenState extends State<LoginScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Image.asset("assets/images/event.png"),
-                Column(
-                  children: [Text("AGAFARI"), Text("EVENTS")],
-                )
+                Image.asset("assets/icons/event.png"),
+                Column(children: [
+                  Text("AGAFARI", style: TextStyle(fontSize: 28)),
+                  Text("EVENTS", style: TextStyle(fontSize: 28))
+                ]),
               ],
             ),
-            SizedBox(height: 35),
-            Text("Sign in"),
+            SizedBox(height: 55),
+            Text("Sign in",
+                style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold)),
             SizedBox(height: 15),
+            AuthInputField(
+              hintText: "abc@email.com",
+              icon: Image.asset("assets/icons/mail.png"),
+            ),
+            SizedBox(height: 10),
+            AuthInputField(
+              hintText: "your password",
+              icon: Image.asset("assets/icons/password.png"),
+            ),
+            SizedBox(height: 10),
+            Align(
+                alignment: Alignment.bottomRight,
+                child: Text("Forgot password?"))
           ],
         ),
       ),
     );
   }
 }
-
-Widget textFormField() {
-  return TextFormField(
-    decoration: InputDecoration(
-      border: OutlineInputBorder(
-        borderSide: BorderSide(color: Color(0xFFE4DFDF)),
-      ),
-      enabledBorder: OutlineInputBorder(
-        borderSide: BorderSide(color: Color(0xFFE4DFDF)),
-      ),
-      focusedBorder: OutlineInputBorder(
-        borderSide: BorderSide(color: Color(0xFFE4DFDF), width: 2),
-      ),
-      errorBorder: OutlineInputBorder(
-        borderSide: BorderSide(color: Colors.redAccent),
-      ),
-      focusedErrorBorder: OutlineInputBorder(
-        borderSide: BorderSide(color: Colors.redAccent, width: 2),
-      ),
-    ),
-  );
-}
-
