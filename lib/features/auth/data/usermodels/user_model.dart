@@ -9,4 +9,3 @@ class UserModel extends UserEntity {
         name: json["name"], email: json["email"], password: json["password"]);
   }
 }
-
