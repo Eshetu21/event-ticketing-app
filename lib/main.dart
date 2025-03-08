@@ -1,6 +1,6 @@
 import 'package:crypto/core/theme/theme.dart';
 import 'package:crypto/features/auth/presentation/bloc/auth_bloc.dart';
-import 'package:crypto/injection_container.dart';
+import 'package:crypto/core/injection_container.dart';
 import 'package:crypto/pages/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -24,4 +24,3 @@ class MainApp extends StatelessWidget {
     );
   }
 }
-
