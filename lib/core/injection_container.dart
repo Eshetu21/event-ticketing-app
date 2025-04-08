@@ -19,5 +19,6 @@ void setupDependencies() {
   sl.registerLazySingleton(() => AuthBloc(
       registerUsercase: sl<RegisterUsercase>(),
       loginUsecase: sl<LoginUsecase>()));
+// Dependency injection 
 }
 
