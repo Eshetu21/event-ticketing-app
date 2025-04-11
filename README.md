@@ -10,7 +10,7 @@ The **Event Ticketing App** is a Flutter-based application that allows users to 
 - Purchase tickets securely.
 - View event details, including date, time, location, and ticket pricing.
 - Chat with event organizers and attendees.
-- Receive event updates and notifications.
+- Receive event updates and push notifications.
 
 ### For Event Organizers
 - Create and manage events with details like title, description, date, and location.
